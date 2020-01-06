@@ -1,10 +1,9 @@
 import pytest
-
 from graphene import Schema
 from peewee import SqliteDatabase
 
 from api import Query
-from models import User, Post, Follow, Like, db
+from models import Follow, Like, Post, User, db
 
 
 class CountingSqliteDatabase(SqliteDatabase):
@@ -83,6 +82,9 @@ def test_api(db_connection):
                 content
             }
         }
+        posts {
+            content
+        }
     }
     """
     result = schema.execute(query)
@@ -116,6 +118,11 @@ def test_api(db_connection):
                 ],
                 u"username": u"user1",
             }
+        ],
+        u"posts": [
+            {u"content": u"lorem ipsum"},
+            {u"content": u"dolorum"},
+            {u"content": u"foo bar"},
         ]
     }
-    assert db_connection.queries_executed == 59
+    assert db_connection.queries_executed == 2

@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
+ptvsd = "*"
 
 [packages]
 graphene = "==2.0.1"

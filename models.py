@@ -3,7 +3,6 @@ from peewee import (
     Proxy,
     ForeignKeyField,
     Model,
-    OperationalError,
     PrimaryKeyField,
     SqliteDatabase,
     TextField
